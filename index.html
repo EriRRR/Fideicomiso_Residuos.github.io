@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fideicomiso de Recolección y Manejo de Residuos - Honduras</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #ff9800;
+            --light-color: #f5f5f5;
+            --dark-color: #333;
+            --gray-color: #777;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1578558288137-7207cb8c0e85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #e68900;
+        }
+        
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .highlight {
+            background-color: rgba(46, 125, 50, 0.1);
+            padding: 20px;
+            border-left: 4px solid var(--primary-color);
+            margin: 25px 0;
+        }
+        
+        /* Images Section */
+        .images-section {
+            background-color: var(--light-color);
+        }
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .image-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .image-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .image-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            min-height: 280px;
+            max-height: 350px;
+            overflow: hidden;
+            background-color: #f8f9fa;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+            object-fit: contain;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .image-container img:hover {
+            transform: scale(1.03);
+        }
+        
+        .image-info {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .image-info h3 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .image-info p {
+            color: var(--gray-color);
+            font-size: 0.95rem;
+        }
+        
+        /* Objectives Section */
+        .objectives {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .objective-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        
+        .objective-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .objective-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-column p, .footer-column li {
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            max-width: 95%;
+            max-height: 95%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .close-modal {
+            position: fixed;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+            z-index: 2001;
+            background-color: rgba(0,0,0,0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close-modal:hover {
+            color: var(--secondary-color);
+            background-color: rgba(0,0,0,0.8);
+        }
+        
+        .image-label {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 10px;
+            background-color: rgba(0,0,0,0.7);
+            margin: 0 20px;
+            border-radius: 5px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .image-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px 10px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 25px;
+                right: 20px;
+            }
+            
+            .mobile-nav {
+                display: none;
+                width: 100%;
+                margin-top: 15px;
+            }
+            
+            .mobile-nav.active {
+                display: block;
+            }
+            
+            .mobile-nav ul {
+                flex-direction: column;
+            }
+            
+            .mobile-nav ul li {
+                margin: 10px 0;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .image-container {
+                min-height: 250px;
+                max-height: 300px;
+            }
+            
+            .modal-img {
+                max-height: 80vh;
+            }
+            
+            .image-label {
+                font-size: 1rem;
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-recycle"></i>
+                <div>
+                    <h1>Fideicomiso <span>Residuos</span></h1>
+                    <p>Gestión sostenible en Honduras</p>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="mobile-nav" id="mobileNav">
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#acerca">Acerca del Proyecto</a></li>
+                    <li><a href="#planos">Planos del Almacén</a></li>
+                    <li><a href="#recursos">Recursos</a></li>
+                    <li><a href="#objetivos">Objetivos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h2>Fideicomiso de Recolección y Manejo de Residuos</h2>
+            <p>Un mecanismo financiero y administrativo diseñado para atender la deficiente gestión de residuos sólidos en zonas rurales y sectores urbanos vulnerables de Honduras.</p>
+            <a href="#acerca" class="btn">Conocer más</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="acerca">
+        <div class="container">
+            <div class="section-title">
+                <h2>Acerca del Proyecto</h2>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p>El <strong>Fideicomiso de Recolección y Manejo de Residuos en Comunidades Rurales y Barrios Periféricos</strong> se plantea como un mecanismo financiero y administrativo diseñado para atender una problemática real y urgente: la deficiente gestión de residuos sólidos en zonas rurales y sectores urbanos vulnerables de Honduras.</p>
+                    
+                    <p>Estas comunidades enfrentan limitaciones estructurales: falta de equipo, infraestructura insuficiente, escasez de personal y recursos económicos reducidos que generan acumulación de residuos, contaminación ambiental y riesgos sanitarios graves.</p>
+                    
+                    <div class="highlight">
+                        <p>Ante esta situación, el fideicomiso se constituye como un instrumento confiable, transparente y técnicamente sólido que permite canalizar recursos económicos, administrarlos profesionalmente y garantizar que se destinen exclusivamente a la mejora de los servicios de recolección.</p>
+                    </div>
+                    
+                    <p>El proyecto tiene como eje central la adquisición de dos camiones recolectores mediante arrendamiento financiero, la contratación y capacitación de personal operativo, y la construcción de un almacén que servirá como centro logístico para las operaciones de la empresa Reciclaje Diamante.</p>
+                    
+                    <p>El uso de un fideicomiso permite obtener el financiamiento necesario sin comprometer la estabilidad financiera de la empresa, ya que los fondos se administran de forma independiente al patrimonio de la misma y bajo supervisión del fiduciario.</p>
+                </div>
+                
+                <div class="about-text">
+                    <p><strong>El Banco Davivienda Honduras S.A.</strong>, actuando como fiduciario, garantiza una administración técnica y profesional de los bienes y recursos fideicomitidos, velando por el cumplimiento de los objetivos planteados.</p>
+                    
+                    <p>Esta intervención asegura que los fondos se utilicen correctamente, que las adquisiciones se realicen bajo buenas prácticas y que todas las operaciones mantengan coherencia con el propósito del proyecto.</p>
+                    
+                    <p>Desde una perspectiva social, el fideicomiso fortalece la salud pública, reduce la contaminación ambiental y mejora la calidad de vida de las comunidades beneficiadas. Desde el punto de vista financiero, permite una operación sostenible, con una estructura clara y un marco legal que protege tanto al fideicomitente como al fiduciario y al fideicomisario.</p>
+                    
+                    <div class="highlight">
+                        <p>En suma, este fideicomiso no solo es viable, sino también necesario, porque su diseño responde directamente a la necesidad de contar con un modelo de gestión de residuos eficiente, responsable y adaptado a las limitaciones municipales y comunitarias.</p>
+                    </div>
+                    
+                    <p>Su creación representa una solución sostenible a largo plazo y un avance significativo en la profesionalización y ampliación de los servicios de recolección en zonas históricamente desatendidas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Images Section -->
+    <section id="planos" class="images-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Planos del Almacén y Recursos</h2>
+                <p>Diseños del almacén a construir y recursos a adquirir</p>
+            </div>
+            
+            <div class="image-grid">
+                <div class="image-card">
+                    <div class="image-container">
+                        <img src="/assets/plano1.jpeg" alt="Plano arquitectónico de mezzanine" onclick="openModal(this.src, 'Plano Arquitectónico de Mezzanine')">
+                    </div>
+                    <div class="image-info">
+                        <h3>Plano Arquitectónico</h3>
+                        <p>Planta arquitectónica de mezzanine con distribución de espacios. Incluye planta estructural, cortes y elevaciones.</p>
+                    </div>
+                </div>
+                
+                <div class="image-card">
+                    <div class="image-container">
+                        <img src="/assets/plano2.jpeg" alt="Planta estructural y de instalaciones" onclick="openModal(this.src, 'Planta Estructural y de Instalaciones')">
+                    </div>
+                    <div class="image-info">
+                        <h3>Planta Estructural</h3>
+                        <p>Planta estructural de mezzanine con detalles de instalaciones eléctricas e hidrosanitarias. Muestra luminarias, contactos y tuberías.</p>
+                    </div>
+                </div>
+                
+                <div class="image-card">
+                    <div class="image-container">
+                        <img src="/assets/plano3.jpeg" alt="Planta y detalles estructurales" onclick="openModal(this.src, 'Planta y Detalles Estructurales')">
+                    </div>
+                    <div class="image-info">
+                        <h3>Detalles Estructurales</h3>
+                        <p>Planta y detalles estructurales del almacén con columnas metálicas 20x20 cm y trabes perimetrales 20x23 cm.</p>
+                    </div>
+                </div>
+                
+                <div class="image-card">
+                    <div class="image-container">
+                        <img src="/assets/plano4.jpeg" alt="Plano de cimentación y escalera" onclick="openModal(this.src, 'Plano de Cimentación y Escalera')">
+                    </div>
+                    <div class="image-info">
+                        <h3>Plano de Cimentación</h3>
+                        <p>Plano de cimentación y detalles de escalera para el almacén. Incluye conexiones metálicas y placas base.</p>
+                    </div>
+                </div>
+                
+                <div class="image-card">
+                    <div class="image-container">
+                        <img src="/assets/camion.jpeg" alt="Camión recolector" onclick="openModal(this.src, 'Camión Recolector')">
+                    </div>
+                    <div class="image-info">
+                        <h3>Camiones Recolectores</h3>
+                        <p>Vehículos que se adquirirán mediante arrendamiento financiero para la recolección de residuos en comunidades rurales.</p>
+                    </div>
+                </div>
+                
+                <div class="image-card">
+                    <div class="image-container">
+                        <img src="/assets/terreno1.jpeg" alt="Terreno para el almacén" onclick="openModal(this.src, 'Terreno para el Almacén')">
+                    </div>
+                    <div class="image-info">
+                        <h3>Terreno del Proyecto</h3>
+                        <p>Ubicación donde se construirá el almacén logístico para la empresa Reciclaje Diamante, centro de operaciones del fideicomiso.</p>
+                    </div>
+                </div>
+                
+                <div class="image-card">
+                    <div class="image-container">
+                        <img src="/assets/terreno2.jpeg" alt="Vista adicional del terreno" onclick="openModal(this.src, 'Vista Adicional del Terreno')">
+                    </div>
+                    <div class="image-info">
+                        <h3>Vista del Terreno</h3>
+                        <p>Área donde se ubicará el centro logístico de operaciones del fideicomiso para la gestión de residuos sólidos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objectives Section -->
+    <section id="objetivos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Objetivos del Fideicomiso</h2>
+                <p>Metas y propósitos del proyecto de gestión de residuos</p>
+            </div>
+            
+            <div class="objectives">
+                <div class="objective-card">
+                    <i class="fas fa-truck"></i>
+                    <h3>Adquisición de Equipos</h3>
+                    <p>Obtener dos camiones recolectores mediante arrendamiento financiero para la recolección de residuos.</p>
+                </div>
+                
+                <div class="objective-card">
+                    <i class="fas fa-warehouse"></i>
+                    <h3>Infraestructura Logística</h3>
+                    <p>Construir un almacén que servirá como centro logístico para las operaciones de la empresa Reciclaje Diamante.</p>
+                </div>
+                
+                <div class="objective-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Capacitación</h3>
+                    <p>Contratar y capacitar personal operativo para la gestión eficiente de los residuos sólidos.</p>
+                </div>
+                
+                <div class="objective-card">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <h3>Administración Financiera</h3>
+                    <p>Garantizar una administración profesional y transparente de los recursos mediante el Banco Davivienda Honduras S.A.</p>
+                </div>
+                
+                <div class="objective-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Sostenibilidad Ambiental</h3>
+                    <p>Reducir la contaminación ambiental y los riesgos sanitarios en comunidades vulnerables.</p>
+                </div>
+                
+                <div class="objective-card">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Salud Pública</h3>
+                    <p>Fortalecer la salud pública y mejorar la calidad de vida en comunidades rurales y barrios periféricos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Fideicomiso de Residuos</h3>
+                    <p>Mecanismo financiero y administrativo para la gestión de residuos sólidos en comunidades rurales y barrios periféricos de Honduras.</p>
+                    <p>Proyecto desarrollado en colaboración con la empresa Reciclaje Diamante.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Honduras, Comunidades Rurales</li>
+                        <li><i class="fas fa-phone"></i> +504 1234-5678</li>
+                        <li><i class="fas fa-envelope"></i> info@fideicomisoresiduos.hn</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Aliados Estratégicos</h3>
+                    <ul>
+                        <li><i class="fas fa-university"></i> Banco Davivienda Honduras S.A.</li>
+                        <li><i class="fas fa-building"></i> Reciclaje Diamante</li>
+                        <li><i class="fas fa-handshake"></i> Comunidades Beneficiadas</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Fideicomiso de Recolección y Manejo de Residuos. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for Image Viewing -->
+    <div class="modal" id="imageModal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img class="modal-img" id="modalImage" alt="Imagen ampliada">
+            <div class="image-label" id="imageLabel"></div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            
+            // Change icon
+            const icon = mobileMenuBtn.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        const navLinks = document.querySelectorAll('.mobile-nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+        
+        // Image modal functionality
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const imageLabel = document.getElementById('imageLabel');
+        
+        function openModal(src, label) {
+            modal.style.display = 'flex';
+            modalImage.src = src;
+            imageLabel.textContent = label;
+            
+            // Prevent scrolling when modal is open
+            document.body.style.overflow = 'hidden';
+            document.body.style.paddingRight = getScrollbarWidth() + 'px';
+        }
+        
+        function closeModal() {
+            modal.style.display = 'none';
+            
+            // Restore scrolling when modal is closed
+            document.body.style.overflow = 'auto';
+            document.body.style.paddingRight = '0';
+        }
+        
+        // Calculate scrollbar width to prevent layout shift
+        function getScrollbarWidth() {
+            return window.innerWidth - document.documentElement.clientWidth;
+        }
+        
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'flex') {
+                closeModal();
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
