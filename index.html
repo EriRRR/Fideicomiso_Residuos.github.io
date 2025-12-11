@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fideicomiso de Recolección y Manejo de Residuos - Honduras</title>
     <style>
-        /* Iconos básicos de FontAwesome - versión simplificada */
+        /* Iconos básicos de FontAwesome */
         @font-face {
             font-family: 'FontAwesome';
             src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2') format('woff2');
@@ -222,77 +222,179 @@
             margin: 25px 0;
         }
         
-        /* Images Section - CORREGIDO */
+        /* Images Section - REORGANIZADO */
         .images-section {
             background-color: var(--light-color);
         }
         
-        .image-grid {
+        /* Layout de 2 columnas para planos */
+        .plano-section {
+            margin-bottom: 60px;
+        }
+        
+        .plano-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .plano-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-        }
-        
-        .image-card {
-            background-color: white;
-            border-radius: 8px;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+            background: white;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
         }
         
-        .image-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        /* CONTENEDOR DE IMAGEN FIJADO */
-        .image-container {
-            height: 250px; /* ALTURA FIJA para todas las imágenes */
+        .plano-imagen {
+            padding: 30px;
+            background: #f8f9fa;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 15px;
+            min-height: 400px;
+        }
+        
+        .plano-imagen img {
+            max-width: 100%;
+            max-height: 350px;
+            object-fit: contain;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background: white;
+            padding: 10px;
+        }
+        
+        .plano-imagen img:hover {
+            transform: scale(1.02);
+        }
+        
+        .plano-info {
+            padding: 40px 30px;
+        }
+        
+        .plano-info h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        .plano-info p {
+            color: var(--dark-color);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .plano-details {
+            background: rgba(46, 125, 50, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .plano-details h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .plano-details ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .plano-details li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .plano-details li:before {
+            content: "•";
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+        
+        /* Recursos Section (camiones y terreno) */
+        .recursos-section {
+            margin-top: 80px;
+        }
+        
+        .recursos-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+        
+        .recursos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .recurso-card {
+            background: white;
+            border-radius: 10px;
             overflow: hidden;
-            background-color: #f8f9fa;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .recurso-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .recurso-imagen {
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: #f8f9fa;
             border-bottom: 1px solid #eee;
         }
         
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; /* Mantiene proporciones sin recortar */
+        .recurso-imagen img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
             cursor: pointer;
             transition: transform 0.3s;
         }
         
-        .image-container img:hover {
-            transform: scale(1.03);
+        .recurso-imagen img:hover {
+            transform: scale(1.05);
         }
         
-        .image-info {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+        .recurso-info {
+            padding: 25px;
         }
         
-        .image-info h3 {
+        .recurso-info h3 {
             color: var(--primary-color);
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            min-height: 3rem;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
         }
         
-        .image-info p {
+        .recurso-info p {
             color: var(--gray-color);
-            font-size: 0.95rem;
-            line-height: 1.5;
+            font-size: 1rem;
+            line-height: 1.6;
         }
         
-        /* Placeholder para imágenes que no cargan */
+        /* Placeholder para imágenes */
         .image-placeholder {
             width: 100%;
             height: 100%;
@@ -460,8 +562,22 @@
                 font-size: 2rem;
             }
             
-            .image-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            .plano-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .plano-imagen {
+                min-height: 300px;
+                padding: 20px;
+            }
+            
+            .plano-imagen img {
+                max-height: 300px;
+            }
+            
+            .plano-info {
+                padding: 30px 20px;
             }
         }
         
@@ -513,12 +629,12 @@
                 padding: 60px 0;
             }
             
-            .image-grid {
+            .recursos-grid {
                 grid-template-columns: 1fr;
             }
             
-            .image-container {
-                height: 220px; /* Un poco más pequeño en móviles */
+            .recurso-imagen {
+                height: 220px;
             }
             
             .modal-img {
@@ -529,16 +645,19 @@
                 font-size: 1rem;
                 margin: 0 10px;
             }
+            
+            .plano-info h3 {
+                font-size: 1.5rem;
+            }
         }
         
         @media (max-width: 480px) {
-            .image-container {
-                height: 200px;
+            .plano-imagen {
+                min-height: 250px;
             }
             
-            .image-info h3 {
-                font-size: 1.1rem;
-                min-height: auto;
+            .plano-imagen img {
+                max-height: 250px;
             }
             
             .hero {
@@ -546,6 +665,10 @@
             }
             
             .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
                 font-size: 1.8rem;
             }
         }
@@ -572,6 +695,7 @@
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#acerca">Acerca del Proyecto</a></li>
                     <li><a href="#planos">Planos del Almacén</a></li>
+                    <li><a href="#recursos">Recursos</a></li>
                     <li><a href="#objetivos">Objetivos</a></li>
                 </ul>
             </nav>
@@ -626,7 +750,7 @@
         </div>
     </section>
 
-    <!-- Images Section - MEJORADO -->
+    <!-- Planos Section - ESTRUCTURA MEJORADA -->
     <section id="planos" class="images-section">
         <div class="container">
             <div class="section-title">
@@ -634,95 +758,148 @@
                 <p>Diseños del almacén a construir y recursos a adquirir</p>
             </div>
             
-            <div class="image-grid">
-                <!-- Plano 1 -->
-                <div class="image-card">
-                    <div class="image-container">
+            <!-- PLANO 1 -->
+            <div class="plano-section">
+                <div class="plano-container">
+                    <div class="plano-imagen">
                         <img src="assets/plano1.jpeg" alt="Plano arquitectónico de mezzanine" 
                              onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-file-alt\"></i><p>Plano Arquitectónico<br><small>Imagen no disponible</small></p></div>';" 
                              onclick="openModal('assets/plano1.jpeg', 'Plano Arquitectónico de Mezzanine')">
                     </div>
-                    <div class="image-info">
+                    <div class="plano-info">
                         <h3>Plano Arquitectónico</h3>
                         <p>Planta arquitectónica de mezzanine con distribución de espacios. Incluye planta estructural, cortes y elevaciones.</p>
+                        
+                        <div class="plano-details">
+                            <h4>Características principales:</h4>
+                            <ul>
+                                <li>Distribución optimizada de espacios</li>
+                                <li>Planta estructural detallada</li>
+                                <li>Cortes y elevaciones precisas</li>
+                                <li>Dimensiones y escalas especificadas</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Plano 2 -->
-                <div class="image-card">
-                    <div class="image-container">
+            </div>
+            
+            <!-- PLANO 2 -->
+            <div class="plano-section">
+                <div class="plano-container">
+                    <div class="plano-imagen">
                         <img src="assets/plano2.jpeg" alt="Planta estructural y de instalaciones" 
                              onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-file-alt\"></i><p>Planta Estructural<br><small>Imagen no disponible</small></p></div>';" 
                              onclick="openModal('assets/plano2.jpeg', 'Planta Estructural y de Instalaciones')">
                     </div>
-                    <div class="image-info">
+                    <div class="plano-info">
                         <h3>Planta Estructural</h3>
                         <p>Planta estructural de mezzanine con detalles de instalaciones eléctricas e hidrosanitarias. Muestra luminarias, contactos y tuberías.</p>
+                        
+                        <div class="plano-details">
+                            <h4>Instalaciones incluidas:</h4>
+                            <ul>
+                                <li>Sistema eléctrico completo</li>
+                                <li>Instalaciones hidrosanitarias</li>
+                                <li>Distribución de luminarias</li>
+                                <li>Ubicación de contactos y tomas</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Plano 3 -->
-                <div class="image-card">
-                    <div class="image-container">
+            </div>
+            
+            <!-- PLANO 3 -->
+            <div class="plano-section">
+                <div class="plano-container">
+                    <div class="plano-imagen">
                         <img src="assets/plano3.jpeg" alt="Planta y detalles estructurales" 
                              onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-file-alt\"></i><p>Detalles Estructurales<br><small>Imagen no disponible</small></p></div>';" 
                              onclick="openModal('assets/plano3.jpeg', 'Planta y Detalles Estructurales')">
                     </div>
-                    <div class="image-info">
+                    <div class="plano-info">
                         <h3>Detalles Estructurales</h3>
                         <p>Planta y detalles estructurales del almacén con columnas metálicas 20x20 cm y trabes perimetrales 20x23 cm.</p>
+                        
+                        <div class="plano-details">
+                            <h4>Especificaciones técnicas:</h4>
+                            <ul>
+                                <li>Columnas metálicas 20x20 cm</li>
+                                <li>Trabes perimetrales 20x23 cm</li>
+                                <li>Sistema de anclaje estructural</li>
+                                <li>Conjunto de detalles constructivos</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Plano 4 -->
-                <div class="image-card">
-                    <div class="image-container">
+            </div>
+            
+            <!-- PLANO 4 -->
+            <div class="plano-section">
+                <div class="plano-container">
+                    <div class="plano-imagen">
                         <img src="assets/plano4.jpeg" alt="Plano de cimentación y escalera" 
                              onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-file-alt\"></i><p>Plano de Cimentación<br><small>Imagen no disponible</small></p></div>';" 
                              onclick="openModal('assets/plano4.jpeg', 'Plano de Cimentación y Escalera')">
                     </div>
-                    <div class="image-info">
+                    <div class="plano-info">
                         <h3>Plano de Cimentación</h3>
                         <p>Plano de cimentación y detalles de escalera para el almacén. Incluye conexiones metálicas y placas base.</p>
+                        
+                        <div class="plano-details">
+                            <h4>Elementos de cimentación:</h4>
+                            <ul>
+                                <li>Sistema de cimentación completo</li>
+                                <li>Detalles de escalera metálica</li>
+                                <li>Conexiones metálicas especificadas</li>
+                                <li>Placas base y anclajes</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+            </div>
+            
+            <!-- RECURSOS (Camiones y Terrenos) -->
+            <div class="recursos-section" id="recursos">
+                <h2 class="recursos-title">Recursos del Proyecto</h2>
                 
-                <!-- Camión -->
-                <div class="image-card">
-                    <div class="image-container">
-                        <img src="assets/camion.jpeg" alt="Camión recolector" 
-                             onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-truck\"></i><p>Camiones Recolectores<br><small>Imagen no disponible</small></p></div>';" 
-                             onclick="openModal('assets/camion.jpeg', 'Camión Recolector')">
+                <div class="recursos-grid">
+                    <!-- CAMIÓN -->
+                    <div class="recurso-card">
+                        <div class="recurso-imagen">
+                            <img src="assets/camion.jpeg" alt="Camión recolector" 
+                                 onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-truck\"></i><p>Camiones Recolectores<br><small>Imagen no disponible</small></p></div>';" 
+                                 onclick="openModal('assets/camion.jpeg', 'Camión Recolector')">
+                        </div>
+                        <div class="recurso-info">
+                            <h3>Camiones Recolectores</h3>
+                            <p>Vehículos que se adquirirán mediante arrendamiento financiero para la recolección de residuos en comunidades rurales.</p>
+                        </div>
                     </div>
-                    <div class="image-info">
-                        <h3>Camiones Recolectores</h3>
-                        <p>Vehículos que se adquirirán mediante arrendamiento financiero para la recolección de residuos en comunidades rurales.</p>
+                    
+                    <!-- TERRENO 1 -->
+                    <div class="recurso-card">
+                        <div class="recurso-imagen">
+                            <img src="assets/terreno1.jpeg" alt="Terreno para el almacén" 
+                                 onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-map-marked-alt\"></i><p>Terreno del Proyecto<br><small>Imagen no disponible</small></p></div>';" 
+                                 onclick="openModal('assets/terreno1.jpeg', 'Terreno para el Almacén')">
+                        </div>
+                        <div class="recurso-info">
+                            <h3>Terreno del Proyecto</h3>
+                            <p>Ubicación donde se construirá el almacén logístico para la empresa Reciclaje Diamante, centro de operaciones del fideicomiso.</p>
+                        </div>
                     </div>
-                </div>
-                
-                <!-- Terreno 1 -->
-                <div class="image-card">
-                    <div class="image-container">
-                        <img src="assets/terreno1.jpeg" alt="Terreno para el almacén" 
-                             onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-map-marked-alt\"></i><p>Terreno del Proyecto<br><small>Imagen no disponible</small></p></div>';" 
-                             onclick="openModal('assets/terreno1.jpeg', 'Terreno para el Almacén')">
-                    </div>
-                    <div class="image-info">
-                        <h3>Terreno del Proyecto</h3>
-                        <p>Ubicación donde se construirá el almacén logístico para la empresa Reciclaje Diamante, centro de operaciones del fideicomiso.</p>
-                    </div>
-                </div>
-                
-                <!-- Terreno 2 -->
-                <div class="image-card">
-                    <div class="image-container">
-                        <img src="assets/terreno2.jpeg" alt="Vista adicional del terreno" 
-                             onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-map-marked-alt\"></i><p>Vista del Terreno<br><small>Imagen no disponible</small></p></div>';" 
-                             onclick="openModal('assets/terreno2.jpeg', 'Vista Adicional del Terreno')">
-                    </div>
-                    <div class="image-info">
-                        <h3>Vista del Terreno</h3>
-                        <p>Área donde se ubicará el centro logístico de operaciones del fideicomiso para la gestión de residuos sólidos.</p>
+                    
+                    <!-- TERRENO 2 -->
+                    <div class="recurso-card">
+                        <div class="recurso-imagen">
+                            <img src="assets/terreno2.jpeg" alt="Vista adicional del terreno" 
+                                 onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-map-marked-alt\"></i><p>Vista del Terreno<br><small>Imagen no disponible</small></p></div>';" 
+                                 onclick="openModal('assets/terreno2.jpeg', 'Vista Adicional del Terreno')">
+                        </div>
+                        <div class="recurso-info">
+                            <h3>Vista del Terreno</h3>
+                            <p>Área donde se ubicará el centro logístico de operaciones del fideicomiso para la gestión de residuos sólidos.</p>
+                        </div>
                     </div>
                 </div>
             </div>
