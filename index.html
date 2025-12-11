@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #2e7d32;
-            --secondary-color: #ff9800;
+            --primary-color: #2e7d32; /* Verde oscuro (como el titular) */
+            --secondary-color: #ff9800; /* Naranja (como la línea bajo los títulos) */
             --light-color: #f5f5f5;
             --dark-color: #333;
             --gray-color: #777;
@@ -99,7 +99,7 @@
             cursor: pointer;
         }
         
-        /* Hero Section */
+        /* Hero Section (Fondo de ejemplo) */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1578558288137-7207cb8c0e85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
             background-size: cover;
@@ -164,12 +164,17 @@
             background-color: var(--secondary-color);
         }
         
+        .section-title p {
+            color: var(--gray-color);
+            margin-top: 10px;
+        }
+        
         /* About Section */
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 40px;
-            align-items: center;
+            align-items: flex-start; /* Alineación superior para el texto */
         }
         
         .about-text p {
@@ -184,14 +189,16 @@
             margin: 25px 0;
         }
         
-        /* Images Section */
+        /* Images Section - EL CORE DE LA IMAGEN ADJUNTA */
         .images-section {
             background-color: var(--light-color);
+            padding-top: 50px; /* Ajuste para el espaciado superior */
         }
         
         .image-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            /* Se adapta a 3 columnas en escritorio, como en la imagen */
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
             gap: 30px;
         }
         
@@ -206,32 +213,32 @@
         }
         
         .image-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
         }
         
         .image-container {
-            flex: 1;
+            /* Fija la altura del contenedor para que las tarjetas se vean uniformes */
+            height: 200px; 
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 15px;
-            min-height: 280px;
-            max-height: 350px;
             overflow: hidden;
             background-color: #f8f9fa;
         }
         
+        /* IMPORTANTE: Usamos object-fit: contain para que la imagen se vea completa dentro de la tarjeta, como los planos en la imagen adjunta */
         .image-container img {
             width: 100%;
-            height: auto;
-            max-height: 100%;
-            object-fit: contain;
+            height: 100%;
+            object-fit: contain; 
             cursor: pointer;
             transition: transform 0.3s;
         }
         
         .image-container img:hover {
-            transform: scale(1.03);
+            transform: scale(1.05);
         }
         
         .image-info {
@@ -241,13 +248,15 @@
         
         .image-info h3 {
             color: var(--primary-color);
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 10px;
+            font-weight: 600; /* Coincide con la imagen */
         }
         
         .image-info p {
             color: var(--gray-color);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            line-height: 1.4;
         }
         
         /* Objectives Section */
@@ -318,7 +327,7 @@
             font-size: 0.9rem;
         }
         
-        /* Modal */
+        /* Modal for Image Viewing (Implementación de la galería) */
         .modal {
             display: none;
             position: fixed;
@@ -339,6 +348,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
         
         .modal-img {
@@ -399,6 +409,7 @@
             }
             
             .image-grid {
+                /* Se adapta a 2 columnas en tablets */
                 grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             }
         }
@@ -414,12 +425,7 @@
             }
             
             nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            nav ul li {
-                margin: 0 10px 10px;
+                display: none; /* Ocultar el menú de escritorio */
             }
             
             .mobile-menu-btn {
@@ -452,12 +458,12 @@
             }
             
             .image-grid {
+                /* 1 columna en móvil */
                 grid-template-columns: 1fr;
             }
             
             .image-container {
-                min-height: 250px;
-                max-height: 300px;
+                height: 250px;
             }
             
             .modal-img {
@@ -472,7 +478,6 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="container header-container">
             <div class="logo">
@@ -491,15 +496,13 @@
                 <ul>
                     <li><a href="#inicio">Inicio</a></li>
                     <li><a href="#acerca">Acerca del Proyecto</a></li>
-                    <li><a href="#planos">Planos del Almacén</a></li>
-                    <li><a href="#recursos">Recursos</a></li>
+                    <li><a href="#planos">Planos y Recursos</a></li>
                     <li><a href="#objetivos">Objetivos</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="inicio">
         <div class="container">
             <h2>Fideicomiso de Recolección y Manejo de Residuos</h2>
@@ -508,7 +511,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="acerca">
         <div class="container">
             <div class="section-title">
@@ -547,7 +549,6 @@
         </div>
     </section>
 
-    <!-- Images Section -->
     <section id="planos" class="images-section">
         <div class="container">
             <div class="section-title">
@@ -558,7 +559,9 @@
             <div class="image-grid">
                 <div class="image-card">
                     <div class="image-container">
-                        <img src="plano1.jpeg" alt="Plano arquitectónico de mezzanine" onclick="openModal(this.src, 'Plano Arquitectónico de Mezzanine')">
+                        <img src="plano1.jpeg" 
+                             alt="Plano arquitectónico de mezzanine" 
+                             onclick="openModal(this.src, 'Plano Arquitectónico de Mezzanine')">
                     </div>
                     <div class="image-info">
                         <h3>Plano Arquitectónico</h3>
@@ -568,7 +571,9 @@
                 
                 <div class="image-card">
                     <div class="image-container">
-                        <img src="plano2.jpeg" alt="Planta estructural y de instalaciones" onclick="openModal(this.src, 'Planta Estructural y de Instalaciones')">
+                        <img src="plano2.jpeg" 
+                             alt="Planta estructural y de instalaciones" 
+                             onclick="openModal(this.src, 'Planta Estructural y de Instalaciones')">
                     </div>
                     <div class="image-info">
                         <h3>Planta Estructural</h3>
@@ -578,7 +583,9 @@
                 
                 <div class="image-card">
                     <div class="image-container">
-                        <img src="plano3.jpeg" alt="Planta y detalles estructurales" onclick="openModal(this.src, 'Planta y Detalles Estructurales')">
+                        <img src="plano3.jpeg"  
+                             alt="Planta y detalles estructurales" 
+                             onclick="openModal(this.src, 'Planta y Detalles Estructurales')">
                     </div>
                     <div class="image-info">
                         <h3>Detalles Estructurales</h3>
@@ -588,7 +595,9 @@
                 
                 <div class="image-card">
                     <div class="image-container">
-                        <img src="plano4.jpeg" alt="Plano de cimentación y escalera" onclick="openModal(this.src, 'Plano de Cimentación y Escalera')">
+                        <img src="plano4.jpeg" 
+                             alt="Plano de cimentación y escalera" 
+                             onclick="openModal(this.src, 'Plano de Cimentación y Escalera')">
                     </div>
                     <div class="image-info">
                         <h3>Plano de Cimentación</h3>
@@ -598,7 +607,9 @@
                 
                 <div class="image-card">
                     <div class="image-container">
-                        <img src="camion.jpeg" alt="Camión recolector" onclick="openModal(this.src, 'Camión Recolector')">
+                        <img src="camion.jpeg"
+                             alt="Camión recolector" 
+                             onclick="openModal(this.src, 'Camiones Recolectores')">
                     </div>
                     <div class="image-info">
                         <h3>Camiones Recolectores</h3>
@@ -608,17 +619,21 @@
                 
                 <div class="image-card">
                     <div class="image-container">
-                        <img src="terreno1.jpeg" alt="Terreno para el almacén" onclick="openModal(this.src, 'Terreno para el Almacén')">
+                        <img src="terreno1.jpeg" 
+                             alt="Terreno para el almacén" 
+                             onclick="openModal(this.src, 'Terreno del Proyecto')">
                     </div>
                     <div class="image-info">
                         <h3>Terreno del Proyecto</h3>
                         <p>Ubicación donde se construirá el almacén logístico para la empresa Reciclaje Diamante, centro de operaciones del fideicomiso.</p>
                     </div>
                 </div>
-                
+
                 <div class="image-card">
                     <div class="image-container">
-                        <img src="terreno2.jpeg" alt="Vista adicional del terreno" onclick="openModal(this.src, 'Vista Adicional del Terreno')">
+                        <img src="terreno2.jpeg" 
+                             alt="Vista adicional del terreno" 
+                             onclick="openModal(this.src, 'Vista Adicional del Terreno')">
                     </div>
                     <div class="image-info">
                         <h3>Vista del Terreno</h3>
@@ -629,7 +644,6 @@
         </div>
     </section>
 
-    <!-- Objectives Section -->
     <section id="objetivos">
         <div class="container">
             <div class="section-title">
@@ -677,7 +691,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -712,7 +725,6 @@
         </div>
     </footer>
 
-    <!-- Modal for Image Viewing -->
     <div class="modal" id="imageModal">
         <span class="close-modal" onclick="closeModal()">&times;</span>
         <div class="modal-content">
@@ -776,6 +788,7 @@
         
         // Calculate scrollbar width to prevent layout shift
         function getScrollbarWidth() {
+            // Un pequeño truco para calcular el ancho de la barra de desplazamiento
             return window.innerWidth - document.documentElement.clientWidth;
         }
         
@@ -803,8 +816,9 @@
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
+                    // Restar un valor para que el header fijo no tape la sección
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: targetElement.offsetTop - 80, 
                         behavior: 'smooth'
                     });
                 }
