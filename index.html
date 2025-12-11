@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fideicomiso de Recolección y Manejo de Residuos - Honduras</title>
-    <!-- Usamos una versión local de FontAwesome para evitar problemas de tracking -->
     <style>
         /* Iconos básicos de FontAwesome - versión simplificada */
         @font-face {
@@ -41,6 +40,9 @@
         .fa-university:before { content: "\f19c"; }
         .fa-building:before { content: "\f1ad"; }
         .fa-handshake:before { content: "\f2b5"; }
+        .fa-file-alt:before { content: "\f15c"; }
+        .fa-map-marked-alt:before { content: "\f5a0"; }
+        .fa-exclamation-triangle:before { content: "\f071"; }
         
         :root {
             --primary-color: #2e7d32;
@@ -220,7 +222,7 @@
             margin: 25px 0;
         }
         
-        /* Images Section */
+        /* Images Section - CORREGIDO */
         .images-section {
             background-color: var(--light-color);
         }
@@ -239,29 +241,29 @@
             transition: transform 0.3s;
             display: flex;
             flex-direction: column;
+            height: 100%;
         }
         
         .image-card:hover {
             transform: translateY(-10px);
         }
         
+        /* CONTENEDOR DE IMAGEN FIJADO */
         .image-container {
-            flex: 1;
+            height: 250px; /* ALTURA FIJA para todas las imágenes */
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 15px;
-            min-height: 280px;
-            max-height: 350px;
             overflow: hidden;
             background-color: #f8f9fa;
+            border-bottom: 1px solid #eee;
         }
         
         .image-container img {
             width: 100%;
-            height: auto;
-            max-height: 100%;
-            object-fit: contain;
+            height: 100%;
+            object-fit: contain; /* Mantiene proporciones sin recortar */
             cursor: pointer;
             transition: transform 0.3s;
         }
@@ -272,18 +274,22 @@
         
         .image-info {
             padding: 20px;
-            border-top: 1px solid #eee;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .image-info h3 {
             color: var(--primary-color);
             font-size: 1.3rem;
             margin-bottom: 10px;
+            min-height: 3rem;
         }
         
         .image-info p {
             color: var(--gray-color);
             font-size: 0.95rem;
+            line-height: 1.5;
         }
         
         /* Placeholder para imágenes que no cargan */
@@ -394,6 +400,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
         
         .modal-img {
@@ -511,8 +518,7 @@
             }
             
             .image-container {
-                min-height: 250px;
-                max-height: 300px;
+                height: 220px; /* Un poco más pequeño en móviles */
             }
             
             .modal-img {
@@ -522,6 +528,25 @@
             .image-label {
                 font-size: 1rem;
                 margin: 0 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .image-container {
+                height: 200px;
+            }
+            
+            .image-info h3 {
+                font-size: 1.1rem;
+                min-height: auto;
+            }
+            
+            .hero {
+                padding: 70px 0;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -601,7 +626,7 @@
         </div>
     </section>
 
-    <!-- Images Section -->
+    <!-- Images Section - MEJORADO -->
     <section id="planos" class="images-section">
         <div class="container">
             <div class="section-title">
@@ -610,9 +635,12 @@
             </div>
             
             <div class="image-grid">
+                <!-- Plano 1 -->
                 <div class="image-card">
                     <div class="image-container">
-                        <img src="assets/plano1.jpeg" alt="Plano arquitectónico de mezzanine" onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-file-alt\"></i><p>Plano Arquitectónico<br><small>Imagen no disponible</small></p></div>';" onclick="openModal('assets/plano1.jpeg', 'Plano Arquitectónico de Mezzanine')">
+                        <img src="assets/plano1.jpeg" alt="Plano arquitectónico de mezzanine" 
+                             onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-file-alt\"></i><p>Plano Arquitectónico<br><small>Imagen no disponible</small></p></div>';" 
+                             onclick="openModal('assets/plano1.jpeg', 'Plano Arquitectónico de Mezzanine')">
                     </div>
                     <div class="image-info">
                         <h3>Plano Arquitectónico</h3>
@@ -620,9 +648,12 @@
                     </div>
                 </div>
                 
+                <!-- Plano 2 -->
                 <div class="image-card">
                     <div class="image-container">
-                        <img src="assets/plano2.jpeg" alt="Planta estructural y de instalaciones" onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-file-alt\"></i><p>Planta Estructural<br><small>Imagen no disponible</small></p></div>';" onclick="openModal('assets/plano2.jpeg', 'Planta Estructural y de Instalaciones')">
+                        <img src="assets/plano2.jpeg" alt="Planta estructural y de instalaciones" 
+                             onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-file-alt\"></i><p>Planta Estructural<br><small>Imagen no disponible</small></p></div>';" 
+                             onclick="openModal('assets/plano2.jpeg', 'Planta Estructural y de Instalaciones')">
                     </div>
                     <div class="image-info">
                         <h3>Planta Estructural</h3>
@@ -630,9 +661,12 @@
                     </div>
                 </div>
                 
+                <!-- Plano 3 -->
                 <div class="image-card">
                     <div class="image-container">
-                        <img src="assets/plano3.jpeg" alt="Planta y detalles estructurales" onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-file-alt\"></i><p>Detalles Estructurales<br><small>Imagen no disponible</small></p></div>';" onclick="openModal('assets/plano3.jpeg', 'Planta y Detalles Estructurales')">
+                        <img src="assets/plano3.jpeg" alt="Planta y detalles estructurales" 
+                             onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-file-alt\"></i><p>Detalles Estructurales<br><small>Imagen no disponible</small></p></div>';" 
+                             onclick="openModal('assets/plano3.jpeg', 'Planta y Detalles Estructurales')">
                     </div>
                     <div class="image-info">
                         <h3>Detalles Estructurales</h3>
@@ -640,9 +674,12 @@
                     </div>
                 </div>
                 
+                <!-- Plano 4 -->
                 <div class="image-card">
                     <div class="image-container">
-                        <img src="assets/plano4.jpeg" alt="Plano de cimentación y escalera" onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-file-alt\"></i><p>Plano de Cimentación<br><small>Imagen no disponible</small></p></div>';" onclick="openModal('assets/plano4.jpeg', 'Plano de Cimentación y Escalera')">
+                        <img src="assets/plano4.jpeg" alt="Plano de cimentación y escalera" 
+                             onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-file-alt\"></i><p>Plano de Cimentación<br><small>Imagen no disponible</small></p></div>';" 
+                             onclick="openModal('assets/plano4.jpeg', 'Plano de Cimentación y Escalera')">
                     </div>
                     <div class="image-info">
                         <h3>Plano de Cimentación</h3>
@@ -650,9 +687,12 @@
                     </div>
                 </div>
                 
+                <!-- Camión -->
                 <div class="image-card">
                     <div class="image-container">
-                        <img src="assets/camion.jpeg" alt="Camión recolector" onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-truck\"></i><p>Camiones Recolectores<br><small>Imagen no disponible</small></p></div>';" onclick="openModal('assets/camion.jpeg', 'Camión Recolector')">
+                        <img src="assets/camion.jpeg" alt="Camión recolector" 
+                             onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-truck\"></i><p>Camiones Recolectores<br><small>Imagen no disponible</small></p></div>';" 
+                             onclick="openModal('assets/camion.jpeg', 'Camión Recolector')">
                     </div>
                     <div class="image-info">
                         <h3>Camiones Recolectores</h3>
@@ -660,9 +700,12 @@
                     </div>
                 </div>
                 
+                <!-- Terreno 1 -->
                 <div class="image-card">
                     <div class="image-container">
-                        <img src="assets/terreno1.jpeg" alt="Terreno para el almacén" onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-map-marked-alt\"></i><p>Terreno del Proyecto<br><small>Imagen no disponible</small></p></div>';" onclick="openModal('assets/terreno1.jpeg', 'Terreno para el Almacén')">
+                        <img src="assets/terreno1.jpeg" alt="Terreno para el almacén" 
+                             onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-map-marked-alt\"></i><p>Terreno del Proyecto<br><small>Imagen no disponible</small></p></div>';" 
+                             onclick="openModal('assets/terreno1.jpeg', 'Terreno para el Almacén')">
                     </div>
                     <div class="image-info">
                         <h3>Terreno del Proyecto</h3>
@@ -670,9 +713,12 @@
                     </div>
                 </div>
                 
+                <!-- Terreno 2 -->
                 <div class="image-card">
                     <div class="image-container">
-                        <img src="assets/terreno2.jpeg" alt="Vista adicional del terreno" onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-map-marked-alt\"></i><p>Vista del Terreno<br><small>Imagen no disponible</small></p></div>';" onclick="openModal('assets/terreno2.jpeg', 'Vista Adicional del Terreno')">
+                        <img src="assets/terreno2.jpeg" alt="Vista adicional del terreno" 
+                             onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\"><i class=\"fas fa-map-marked-alt\"></i><p>Vista del Terreno<br><small>Imagen no disponible</small></p></div>';" 
+                             onclick="openModal('assets/terreno2.jpeg', 'Vista Adicional del Terreno')">
                     </div>
                     <div class="image-info">
                         <h3>Vista del Terreno</h3>
@@ -770,7 +816,8 @@
     <div class="modal" id="imageModal">
         <span class="close-modal" onclick="closeModal()">&times;</span>
         <div class="modal-content">
-            <img class="modal-img" id="modalImage" alt="Imagen ampliada" onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\" style=\"color: white;\"><i class=\"fas fa-exclamation-triangle\"></i><p>Imagen no disponible</p></div>';">
+            <img class="modal-img" id="modalImage" alt="Imagen ampliada" 
+                 onerror="this.onerror=null; this.src=''; this.parentElement.innerHTML='<div class=\"image-placeholder\" style=\"color: white;\"><i class=\"fas fa-exclamation-triangle\"></i><p>Imagen no disponible</p></div>';">
             <div class="image-label" id="imageLabel"></div>
         </div>
     </div>
@@ -863,18 +910,6 @@
                     });
                 }
             });
-        });
-        
-        // Add missing icon classes
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add missing FontAwesome classes
-            const style = document.createElement('style');
-            style.textContent = `
-                .fa-file-alt:before { content: "\\f15c"; }
-                .fa-map-marked-alt:before { content: "\\f5a0"; }
-                .fa-exclamation-triangle:before { content: "\\f071"; }
-            `;
-            document.head.appendChild(style);
         });
     </script>
 </body>
